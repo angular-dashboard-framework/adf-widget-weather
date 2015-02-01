@@ -1,0 +1,15 @@
+{
+  "name": "adf-widget-weather",
+  "version": "0.1.0-SNAPSHOT",
+  "main": "dist/adf-widget-weather.js",
+  "ignore": [
+    "bower.json",
+    ".bowerrc",
+    ".jshintrc",
+    ".gitignore",
+    "gulpfile.js",
+    "node_modules",
+    "package.json",
+    "src"
+  ]
+}
