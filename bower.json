@@ -1,6 +1,6 @@
 {
   "name": "adf-widget-weather",
-  "version": "0.1.0-SNAPSHOT",
+  "version": "0.1.0",
   "main": "dist/adf-widget-weather.js",
   "ignore": [
     "bower.json",
@@ -10,6 +10,22 @@
     "gulpfile.js",
     "node_modules",
     "package.json",
+    "components",
     "src"
-  ]
+  ],
+  "keywords": [
+    "dashboard",
+    "widget",
+    "adf",
+    "adf-widget",
+    "weather",
+    "temperature"
+  ],
+  "description": "Weather widget for the angular-dashboard-framework",
+  "dependencies": {
+    "angular-dashboard-framework": "0.7.0"
+  },
+  "devDependencies": {
+    "angular-local-storage": "0.1.5"
+  }
 }
