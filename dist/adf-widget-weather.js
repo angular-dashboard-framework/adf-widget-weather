@@ -1,3 +1,4 @@
+(function(window, undefined) {'use strict';
 /*
  * The MIT License
  *
@@ -22,11 +23,11 @@
  * SOFTWARE.
  */
 
-'use strict';
+
 
 angular.module('adf.widget.weather', ['adf.provider'])
   .value('weatherServiceUrl', 'http://api.openweathermap.org/data/2.5/weather?units=metric&callback=JSON_CALLBACK&q=')
-  .config(function(dashboardProvider){
+  .config(["dashboardProvider", function(dashboardProvider){
     dashboardProvider
       .widget('weather', {
         title: 'Weather',
@@ -35,18 +36,18 @@ angular.module('adf.widget.weather', ['adf.provider'])
         controller: 'weatherCtrl',
         reload: true,
         resolve: {
-          data: function(weatcherService, config){
+          data: ["weatcherService", "config", function(weatcherService, config){
             if (config.location){
               return weatcherService.get(config.location);
             }
-          }
+          }]
         },
         edit: {
           templateUrl: '{widgetsPath}/weather/src/edit.html'
         }
       });
-  })
-  .service('weatcherService', function($q, $http, weatherServiceUrl){
+  }])
+  .service('weatcherService', ["$q", "$http", "weatherServiceUrl", function($q, $http, weatherServiceUrl){
     return {
       get: function(location){
         var deferred = $q.defer();
@@ -65,10 +66,10 @@ angular.module('adf.widget.weather', ['adf.provider'])
         return deferred.promise;
       }
     };
-  })
-  .controller('weatherCtrl', function($scope, data){
+  }])
+  .controller('weatherCtrl', ["$scope", "data", function($scope, data){
     $scope.data = data;
-  });
+  }]);
 
 angular.module("adf.widget.weather").run(["$templateCache", function($templateCache) {$templateCache.put("{widgetsPath}/weather/src/edit.html","<form role=form><div class=form-group><label for=location>Location</label> <input type=location class=form-control id=location ng-model=config.location placeholder=\"Enter location\"></div></form>");
-$templateCache.put("{widgetsPath}/weather/src/view.html","<div class=text-center><div class=\"alert alert-info\" ng-if=!data>Please insert a location in the widget configuration</div><div class=weather ng-if=data><h4>{{data.name}} ({{data.sys.country}})</h4><dl><dt>Temprature:</dt><dd>{{data.main.temp | number:2}}</dd></dl></div></div>");}]);
+$templateCache.put("{widgetsPath}/weather/src/view.html","<div class=text-center><div class=\"alert alert-info\" ng-if=!data>Please insert a location in the widget configuration</div><div class=weather ng-if=data><h4>{{data.name}} ({{data.sys.country}})</h4><dl><dt>Temprature:</dt><dd>{{data.main.temp | number:2}}</dd></dl></div></div>");}]);})(window);
