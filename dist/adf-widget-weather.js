@@ -72,4 +72,4 @@ angular.module('adf.widget.weather', ['adf.provider'])
   }]);
 
 angular.module("adf.widget.weather").run(["$templateCache", function($templateCache) {$templateCache.put("{widgetsPath}/weather/src/edit.html","<form role=form><div class=form-group><label for=location>Location</label> <input type=location class=form-control id=location ng-model=config.location placeholder=\"Enter location\"></div></form>");
-$templateCache.put("{widgetsPath}/weather/src/view.html","<div class=text-center><div class=\"alert alert-info\" ng-if=!data>Please insert a location in the widget configuration</div><div class=weather ng-if=data><h4>{{data.name}} ({{data.sys.country}})</h4><dl><dt>Temprature:</dt><dd>{{data.main.temp | number:2}}</dd></dl></div></div>");}]);})(window);
+$templateCache.put("{widgetsPath}/weather/src/view.html","<div class=text-center><div class=\"alert alert-info\" ng-if=!data>Please insert a location in the widget configuration</div><div class=weather ng-if=data><h4>{{data.name}} ({{data.sys.country}})</h4><dl><dt>Temperature:</dt><dd>{{data.main.temp | number:2}}</dd></dl></div></div>");}]);})(window);
