@@ -26,6 +26,7 @@
 
 
 angular.module('adf.widget.weather', ['adf.provider'])
+  .value('weatherApiKey', '2decdac859755da9d25281b20f0dc7a1')
   .value('weatherServiceUrl', 'http://api.openweathermap.org/data/2.5/weather?units=metric&callback=JSON_CALLBACK&q=')
   .config(["dashboardProvider", function(dashboardProvider){
     dashboardProvider
@@ -47,11 +48,11 @@ angular.module('adf.widget.weather', ['adf.provider'])
         }
       });
   }])
-  .service('weatcherService', ["$q", "$http", "weatherServiceUrl", function($q, $http, weatherServiceUrl){
+  .service('weatcherService', ["$q", "$http", "weatherServiceUrl", "weatherApiKey", function($q, $http, weatherServiceUrl, weatherApiKey){
     return {
       get: function(location){
         var deferred = $q.defer();
-        var url = weatherServiceUrl + location;
+        var url = weatherServiceUrl + location + '&appid=' + weatherApiKey;
         $http.jsonp(url)
           .success(function(data){
             if (data && data.cod === 200){
