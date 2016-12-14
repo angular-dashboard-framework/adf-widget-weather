@@ -24,29 +24,9 @@
 
 'use strict';
 
-angular.module('adf.widget.weather', ['adf.provider'])
-  .value('weatherApiKey', '2decdac859755da9d25281b20f0dc7a1')
-  .value('weatherServiceUrl', 'http://api.openweathermap.org/data/2.5/weather?units=metric&q=')
-  .config(RegisterWidget);
+angular.module('adf.widget.weather')
+  .controller('weatherController', WeatherController);
 
-function RegisterWidget(dashboardProvider) {
-  dashboardProvider
-    .widget('weather', {
-      title: 'Weather',
-      description: 'Display the current temperature of a city',
-      templateUrl: '{widgetsPath}/weather/src/view.html',
-      controller: 'weatherController',
-      controllerAs: 'vm',
-      reload: true,
-      resolve: {
-        data: function (weatherService, config) {
-          if (config.location) {
-            return weatherService.get(config.location);
-          }
-        }
-      },
-      edit: {
-        templateUrl: '{widgetsPath}/weather/src/edit.html'
-      }
-    });
+function WeatherController(data) {
+  this.data = data;
 }
