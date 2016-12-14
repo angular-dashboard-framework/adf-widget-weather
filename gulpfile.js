@@ -4,12 +4,11 @@ var wiredep = require('wiredep').stream;
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var jsReporter = require('jshint-stylish');
-var annotateAdfPlugin = require('ng-annotate-adf-plugin');
 var pkg = require('./package.json');
 
 var annotateOptions = {
-  plugin: [
-    annotateAdfPlugin
+  enable: [
+    'angular-dashboard-framework'
   ]
 };
 
@@ -23,7 +22,7 @@ var templateOptions = {
 gulp.task('csslint', function(){
   gulp.src('src/**/*.css')
       .pipe($.csslint())
-      .pipe($.csslint.reporter());
+      .pipe($.csslint.formatter());
 });
 
 gulp.task('jslint', function(){

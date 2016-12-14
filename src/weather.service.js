@@ -32,7 +32,7 @@ function WeatherService($q, $http, $sce, weatherServiceUrl, weatherApiKey) {
   // use sce for angular >= 1.6
   function _oneSix(untrusted) {
     var url = $sce.trustAsResourceUrl(untrusted);
-    return $http.jsonp(url, {jsonpCallbackParam: 'callback'})
+    return $http.jsonp(url, {jsonpCallbackParam: 'callback'});
   }
 
   // add callback parameter to angular < 1.6
